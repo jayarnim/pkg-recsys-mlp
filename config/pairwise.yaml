@@ -1,0 +1,50 @@
+# RUNTIME ==========
+seed: 42
+
+
+# MODEL ==========
+model:
+  name:
+  params:
+
+
+# DATAMODULE PACKAGE ==========
+split:
+  ratio:
+    trn: 8
+    val: 1
+    tst: 1
+  min_rating: 1
+  filter_by: "user"
+
+dataloader:
+  negatives:
+    opt: 4
+    msr: 99
+  batch_size:
+    opt: 256
+    msr: 1024
+  shuffle: True
+
+
+# TRAINER PACKAGE ==========
+num_epochs: 100
+
+early_stopping:
+  patience: 5
+  delta: 0.001
+  warmup: 10
+
+criterion:
+  name: bpr
+  params:
+
+optimizer:
+  name: adamw
+  params:
+    lr: 0.001
+    weight_decay: 0.000001
+
+metric:
+  name: ndcg
+  cutoff: 10
